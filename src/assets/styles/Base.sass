@@ -1,7 +1,7 @@
-$colorPrimay: #00d3bc
+$colorPrimay: #02cab9
 $colorSecondary: #d2d2d2
-$colorThirdary: #585858
-
+$colorThirdary: #484848
+$colorNone: #fff
 $padWidth: 1200px
 $phoneWidth: 640px
 
@@ -13,31 +13,64 @@ $phoneWidth: 640px
     @content
 
 html
-  font-size: 14px
-  @include phone
-    font-size: 12px
+  font-size: 12px
 
-h1
-  font-size: 6em
-  margin: 0
-  @include phone
-    font-size: 3em
-h2
-  font-size: 1.8em
-  margin: 0
-  @include phone
-    font-size: 1.2em
-p
-  font-size: 1.2em
+h3
+  font-size: 1.167em
 
+.mar
+  &-t-05
+    margin-top: 0.5em!important
+  &-b-05
+    margin-bottom: 0.5em!important  
+    
 .color
   &-primary
     color: $colorPrimay
   &-secondary
     color: $colorSecondary
 
+#root
+  width: 100%
+  height: 100%
+
+.layoutSingle
+  width: 100%
+  height: 100%
+  background-color: $colorNone
+
 .calendar
   &__wrapper
-    padding: 9% 20%
-    @include phone
-      padding: 9% 12%
+    width: 700px
+    height: 518px
+    position: absolute
+    top: 50%
+    left: 50%
+    transform: translate(-50%, -50%)
+    font-family: Helvetica Neue,Helvetica,Arial,PingFang HK,\.PingFang-SC-Regular,PingFang,Hiragino Sans GB,STHeiti,Microsoft JhengHei,sans-serif!important
+  &__list
+    padding: 0
+    margin: 0
+    list-style: none
+  &__item
+    display: inline-block
+    width: calc(14.286% - 1rem)
+    text-align: center
+    border-top: 4px solid $colorPrimay
+    margin: 0 0.5rem
+    &--expired
+      border-color: $colorSecondary
+  &__nav
+    margin-bottom: 1.5em
+  &__range
+    display: inline-block
+    font-size: 1.167em
+  &__txt
+    display: inline-block
+    float: right
+  &__options
+    display: inline-block
+    margin-right: 2rem
+    &.ant-btn
+      width: 2.5em
+      height: 2em
