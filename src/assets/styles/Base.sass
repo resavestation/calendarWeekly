@@ -17,12 +17,12 @@ html
 
 h3
   font-size: 1.167em
-
+  color: inherit
 .mar
   &-t-05
     margin-top: 0.5em!important
   &-b-05
-    margin-bottom: 0.5em!important  
+    margin-bottom: 0.5em!important
 
 .color
   &-primary
@@ -42,20 +42,20 @@ h3
 .calendar
   &__wrapper
     width: 700px
-    height: 518px
     position: absolute
-    top: 50%
+    margin-top: 5%
     left: 50%
-    transform: translate(-50%, -50%)
+    transform: translateX(-50%)
     font-family: Helvetica Neue,Helvetica,Arial,PingFang HK,\.PingFang-SC-Regular,PingFang,Hiragino Sans GB,STHeiti,Microsoft JhengHei,sans-serif!important
     @include phone
-      width: 250px
+      width: 300px
   &__list
     padding: 0
     margin: 0
     list-style: none
   &__item
-    display: inline-block
+    display: block
+    float: left
     width: calc(14.286% - 1rem)
     text-align: center
     border-top: 4px solid $colorPrimay
@@ -63,6 +63,10 @@ h3
     &--expired
       color: $colorSecondary
       border-color: $colorSecondary
+  &__time
+    color: $colorPrimay
+    &--booked
+      color: $colorSecondary
   &__nav
     margin-bottom: 1.5em
   &__range

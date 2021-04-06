@@ -31,8 +31,9 @@ const dayFormat = (day) => {
 const getCalendarData = (timestamp) => {
   const date = !!timestamp ? new Date(timestamp) : new Date();
   const yy = date.getFullYear();
-  const mm = date.getMonth() + 1;
-  const dd = date.getDate();
+  const mm =
+    date.getMonth() + 1 >= 10 ? date.getMonth() + 1 : `0${date.getMonth() + 1}`;
+  const dd = date.getDate() >= 10 ? date.getDate() : `0${date.getDate()}`;
   const weekDay = date.getDay();
   const fullDate = `${yy}/${mm}/${dd}`;
   return { fullDate: fullDate, weekDay: weekDay, date: dd };
@@ -73,11 +74,9 @@ export function DataFilter(date) {
   const timestamp = Date.parse(date) - 28800000;
   const newDate = new Date(timestamp);
   const hh =
-    newDate.getHours().toString().length > 1
-      ? newDate.getHours()
-      : `0${newDate.getHours()}`;
+    newDate.getHours() >= 10 ? newDate.getHours() : `0${newDate.getHours()}`;
   const mm =
-    newDate.getMinutes().toString.length > 1
+    newDate.getMinutes() >= 10
       ? newDate.getMinutes()
       : `0${newDate.getMinutes()}`;
   const time = `${hh}:${mm}`;
