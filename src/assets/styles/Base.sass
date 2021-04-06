@@ -1,0 +1,43 @@
+$colorPrimay: #00d3bc
+$colorSecondary: #d2d2d2
+$colorThirdary: #585858
+
+$padWidth: 1200px
+$phoneWidth: 640px
+
+@mixin pad
+  @media screen and (max-width: $padWidth)
+    @content
+@mixin phone
+  @media screen and (max-width: $phoneWidth)
+    @content
+
+html
+  font-size: 14px
+  @include phone
+    font-size: 12px
+
+h1
+  font-size: 6em
+  margin: 0
+  @include phone
+    font-size: 3em
+h2
+  font-size: 1.8em
+  margin: 0
+  @include phone
+    font-size: 1.2em
+p
+  font-size: 1.2em
+
+.color
+  &-primary
+    color: $colorPrimay
+  &-secondary
+    color: $colorSecondary
+
+.calendar
+  &__wrapper
+    padding: 9% 20%
+    @include phone
+      padding: 9% 12%
