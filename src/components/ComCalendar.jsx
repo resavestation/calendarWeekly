@@ -2,28 +2,33 @@ import React, { useState, useEffect } from "react";
 import { Button } from "antd";
 import { LeftOutlined, RightOutlined } from "@ant-design/icons";
 import { Data } from "@services/DataCalendar";
-import { GetToday, GetWeeklyArr } from "@utils";
+import { DataFilter, GetToday, GetWeeklyArr } from "@utils";
 
 const ComCalendar = () => {
   const [calendarData, setCalendarData] = useState([]);
   const [weeklyData, setWeeklyData] = useState([]);
   const [count, setCount] = useState(0);
-
-  /*
   const filterData = () => {
     let dataAvailable = !!Data && !!Data.available ? Data.available : [];
     let dataBooked = !!Data && !!Data.booked ? Data.booked : [];
     dataAvailable = dataAvailable.map((item) => {
       item.enableBooked = true;
+      const obj = DataFilter(item.start);
+      item.timestamp = obj.timestamp;
+      item.time = obj.time;
       return item;
     });
     dataBooked = dataBooked.map((item) => {
       item.enableBooked = false;
+      const obj = DataFilter(item.start);
+      item.timestamp = obj.timestamp;
+      item.time = obj.time;
       return item;
     });
     setCalendarData(dataAvailable.concat(dataBooked));
   };
-  */
+  useEffect(filterData, []);
+  console.log(calendarData);
   const updateData = () => {
     setWeeklyData(GetWeeklyArr(count));
   };

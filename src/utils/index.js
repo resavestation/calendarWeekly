@@ -28,7 +28,7 @@ const dayFormat = (day) => {
   }
   return dayStr;
 };
-const getFullDate = (timestamp) => {
+const getCalendarData = (timestamp) => {
   const date = !!timestamp ? new Date(timestamp) : new Date();
   const yy = date.getFullYear();
   const mm = date.getMonth() + 1;
@@ -38,7 +38,7 @@ const getFullDate = (timestamp) => {
   return { fullDate: fullDate, weekDay: weekDay, date: dd };
 };
 export function GetToday() {
-  const date = getFullDate();
+  const date = getCalendarData();
   const timestampToday = Date.parse(date.fullDate);
   return {
     fullDate: date.fullDate,
@@ -56,7 +56,7 @@ export function GetWeeklyArr(count) {
   let arr = [];
   for (let i = 0; i < 7; i++) {
     if (i !== today.weekDay) {
-      const date = getFullDate(
+      const date = getCalendarData(
         (i - today.weekDay) * 86400000 + today.dateTimestamp
       );
       arr[i] = {};
@@ -69,31 +69,17 @@ export function GetWeeklyArr(count) {
   }
   return arr;
 }
-export function DateFormat(date) {
-  console.log(date);
-  //const dateStr = date.split(".")[0];
-  //let dateString = date.replace(/-/g, "/").replace("T", " ");
-
-  const timestamp = Date.parse(new Date(date));
-  // 28800
-  let newDate = new Date();
-  newDate.setTime(timestamp);
-  const options = {
-    year: "numeric", // 加西元年
-    day: "2-digit", //(e.g., 1)
-    month: "2-digit", //(e.g., Oct)
-    hour: "2-digit", //(e.g., 02)
-    minute: "2-digit", //(e.g., 02)
-    hour12: false, // 24 小時制
-    second: "2-digit", // 加秒數
-  };
-  let dateStringFormat = newDate.toLocaleString("zh-TW", options);
-  dateStringFormat = dateStringFormat.replace("年", "/");
-  dateStringFormat = dateStringFormat.replace("月", "/");
-  dateStringFormat = dateStringFormat.replace("日", "");
-  return dateStringFormat;
-}
-export function DateToTimestamp(date) {
-  const timestamp = Date.parse(new Date(date));
-  return timestamp;
+export function DataFilter(date) {
+  const timestamp = Date.parse(date) - 28800000;
+  const newDate = new Date(timestamp);
+  const hh =
+    newDate.getHours().toString().length > 1
+      ? newDate.getHours()
+      : `0${newDate.getHours()}`;
+  const mm =
+    newDate.getMinutes().toString.length > 1
+      ? newDate.getMinutes()
+      : `0${newDate.getMinutes()}`;
+  const time = `${hh}:${mm}`;
+  return { timestamp: timestamp, time };
 }
