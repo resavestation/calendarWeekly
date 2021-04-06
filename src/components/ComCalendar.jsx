@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Button } from "antd";
 import { LeftOutlined, RightOutlined } from "@ant-design/icons";
+import { CalendarDetail } from "@constants/conCalendar";
+// services若在真實環境則放API
 import { Data } from "@services/DataCalendar";
 import { DataFilter, GetToday, GetWeeklyArr } from "@utils";
 
@@ -93,7 +95,7 @@ const ComCalendar = () => {
   return (
     <div className="calendar">
       <div className="calendar__wrapper">
-        <h2>Available times</h2>
+        <h2>{CalendarDetail && CalendarDetail.title}</h2>
         <div className="calendar__nav">
           <div className="calendar__options">
             {count <= 0 ? (
@@ -122,7 +124,7 @@ const ComCalendar = () => {
               : "no data"}
           </div>
           <div className="calendar__txt">
-            * All times listed are in your local timezone: Taipei (GMT+08:00)
+            {CalendarDetail && CalendarDetail.description}
           </div>
         </div>
         <ul className="calendar__list">{calendarChild}</ul>

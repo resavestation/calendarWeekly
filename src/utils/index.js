@@ -1,27 +1,28 @@
-// 之後改i18n
+// 可以改i18n
 const dayFormat = (day) => {
+  const lang = navigator.language;
   let dayStr = "";
   switch (day) {
     case 0:
-      dayStr = "Sun";
+      dayStr = lang === "zh-TW" ? "日" : "Sun";
       break;
     case 1:
-      dayStr = "Mon";
+      dayStr = lang === "zh-TW" ? "一" : "Mon";
       break;
     case 2:
-      dayStr = "Tue";
+      dayStr = lang === "zh-TW" ? "二" : "Tue";
       break;
     case 3:
-      dayStr = "Wed";
+      dayStr = lang === "zh-TW" ? "三" : "Wed";
       break;
     case 4:
-      dayStr = "Thu";
+      dayStr = lang === "zh-TW" ? "四" : "Thu";
       break;
     case 5:
-      dayStr = "Fri";
+      dayStr = lang === "zh-TW" ? "五" : "Fri";
       break;
     case 6:
-      dayStr = "Sat";
+      dayStr = lang === "zh-TW" ? "六" : "Sat";
       break;
     default:
       break;
